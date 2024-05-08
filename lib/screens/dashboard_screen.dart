@@ -23,7 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         slivers: [
           SliverToBoxAdapter(
             child: SizedBox(
-              height: 380,
+              height: 340,
               child: _head(),
             ),
           ),
@@ -79,13 +79,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  trailing: Text(
-                    geter()[index].fee!,
-                    style: TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w600,
-                      color: geter()[index].buy! ? Colors.red : Colors.green,
-                    ),
+                  trailing: Column(
+                    children: [
+                      if (_isAuthenticated)
+                        Text(
+                          geter()[index].fee!,
+                          style: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.w600,
+                            color:
+                                geter()[index].buy! ? Colors.red : Colors.green,
+                          ),
+                        ),
+                      if (!_isAuthenticated)
+                        const Text(
+                          "XXXX",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                    ],
                   ),
                 );
               },
@@ -134,7 +148,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(left: 10, top: 30),
+                    padding: EdgeInsets.only(left: 15, top: 30),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -163,7 +177,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
         Positioned(
-          top: 160,
+          top: 120,
           left: 37,
           child: Container(
             height: 200,
